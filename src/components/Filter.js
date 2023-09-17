@@ -1,9 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { adjustFilter } from '../reducers/filterReducer'
 
 const VisibilityFilter = () => {
     const dispatch = useDispatch()
+    const filter = useSelector(state => state.filter)
+    console.log(filter, 'filter')
 
     const style = {
         marginBottom: 10
@@ -15,9 +17,10 @@ const VisibilityFilter = () => {
 
     return (
         <div style={style}>
-            filter shown with <input onChange={updateFilter} /><button onClick={updateFilter} value=''>Clear</button>
+            filter shown with <input onChange={updateFilter} value={filter}/><button onClick={updateFilter} value=''>Clear</button>
         </div>
     )
 }
 
 export default VisibilityFilter
+

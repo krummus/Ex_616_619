@@ -2,24 +2,26 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 const Notification = () => {
-  const notification = useSelector(state => state.notifications).notification
+  const notifications = useSelector(state => state.notifications)
 
   const style = {
     border: 'solid',
     padding: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    margin: 5
   }
 
-  if(notification !== '') {
+  if (notifications.length !== 0) {
     return (
-      <div style={style}>
-        {notification}
+      <div>
+        {notifications.map(notif => 
+          <div style={style} key={notif.message}>{notif.message}</div>
+        )}
       </div>
     )
   }else{
     return (
-      <div style={null}>
-      </div>
+      <div style={null} />
     )
   }
 }

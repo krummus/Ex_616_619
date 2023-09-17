@@ -5,7 +5,7 @@ import { makeNotifUpVote } from '../reducers/notificationReducer'
 
 const Anecdotes = () => {
   const dispatch = useDispatch()
-  const filter = useSelector(state => state.filter).filter.toLowerCase()
+  const filter = useSelector(state => state.filter).toLowerCase()
   const anecdotes = useSelector(state => {
     if (filter === '') {
       return state.anecdotes
@@ -16,7 +16,7 @@ const Anecdotes = () => {
 
   const vote = async (id) => {
     dispatch(addVoteAnecdote(id))
-    dispatch(makeNotifUpVote(id,3))
+    dispatch(makeNotifUpVote(id, 5))
   }
 
   return(
@@ -27,7 +27,7 @@ const Anecdotes = () => {
           {anecdote.content}
           </div>
           <div>
-          has {anecdote.votes} 
+          {`has ${anecdote.votes} `} 
           <button onClick={() => vote(anecdote.id)}>vote</button>
           </div>
       </div>
